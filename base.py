@@ -6,6 +6,8 @@ fgbg = cv2.createBackgroundSubtractorMOG2(300,200,True)
 
 a = 0
 first_frame = None
+tmp = False
+moving = 0
 
 while True:
     a = a+1
@@ -17,6 +19,10 @@ while True:
 
     if a > 1 and count > 3000:
         print(a)
+        moving += 1
+        if tmp == False and moving>10:
+            tmp = True
+            cv2.imwrite("slika.jpg", frame)
 
     cv2.imshow('capturef',frame)
     cv2.imshow('capture',fgmask)
