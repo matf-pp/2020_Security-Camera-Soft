@@ -9,6 +9,9 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 import os.path
+
+# Absolute path to the directory of the program
+absolute_dirpath = os.path.abspath(os.path.dirname(__file__))
 fileName = 'slika.jpg'
 
 class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
@@ -61,7 +64,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                     tmp = True
                     
                     # Save an image
-                    cv2.imwrite("slika.jpg", frame)
+                    cv2.imwrite(os.path.join(absolute_dirpath, fileName), frame)
 
 					# Account you are sending mail from
                     email = '@gmail.com'
