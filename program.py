@@ -9,6 +9,11 @@ from email.mime.multipart import MIMEMultipart
 from email.mime.base import MIMEBase
 from email import encoders
 import os.path
+import time
+
+############################
+#       TODO GRESKE        #
+############################
 
 # Absolute path to the directory of the program
 absolute_dirpath = os.path.abspath(os.path.dirname(__file__))
@@ -42,6 +47,11 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         tmp = False
         moving = 0
 
+        try:
+            times = open('times.txt', 'w')
+        except:
+            print('Error!')
+
         while True:
             a = a + 1
 			
@@ -62,6 +72,10 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                 
                 if tmp == False and moving > 10:
                     tmp = True
+
+                    seconds = time.time()
+                    ltime = time.ctime(seconds)
+                    times.write(ltime + "\n")
                     
                     # Save an image
                     cv2.imwrite(os.path.join(absolute_dirpath, fileName), frame)
@@ -71,7 +85,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                     password = 'pass'
                     send_to_email = iemail
                     subject = 'Subject'
-                    message = 'This is some message'
+                    message = ltime
 
 					# Creates the container email message
                     msg = MIMEMultipart()
@@ -119,8 +133,10 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
         print(a)
         video.release()
+
+        times.close()
         
-        # To destroy all the windows that are reated
+        # To destroy all the windows that are created
         cv2.destroyAllWindows()
 
 if __name__ == "__main__":
