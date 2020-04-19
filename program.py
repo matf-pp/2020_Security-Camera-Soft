@@ -17,15 +17,34 @@ import time
 
 # Absolute path to the directory of the program
 absolute_dirpath = os.path.abspath(os.path.dirname(__file__))
-fileName = 'slika.jpg'
+fileName = 'picture.jpg'
 
 class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self):
         
         super(CameraClass, self).__init__()
         self.setupUi(self)
+        
+        # Not possible to resize the window
+        self.setFixedSize(942, 594)
+        self.statusBar.setSizeGripEnabled(False)
+
+        # Set action on radio buttons
+        self.videoFrame.setVisible(False)
+        self.computerCamera.toggled.connect(
+        				lambda: self.recording(self.computerCamera.isChecked()))
+        
+        # Start the program                
         self.pushButton.clicked.connect(lambda: self.start())
         
+    def recording(self, check):
+
+        # Check type of recording where you detect motion
+        if(check):
+            self.videoFrame.setVisible(False)
+
+        else:
+            self.videoFrame.setVisible(True)
 
     def start (self):
     
@@ -47,6 +66,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         tmp = False
         moving = 0
 
+		# File where the time will be stored
         try:
             times = open('times.txt', 'w')
         except:
@@ -73,6 +93,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                 if tmp == False and moving > 10:
                     tmp = True
 
+					# Time when detection of the motion was made
                     seconds = time.time()
                     ltime = time.ctime(seconds)
                     times.write(ltime + "\n")
