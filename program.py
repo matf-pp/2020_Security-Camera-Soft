@@ -10,32 +10,60 @@ from email.mime.base import MIMEBase
 from email import encoders
 import os.path
 import time
+import re
 
 ############################
-#       TODO GRESKE        #
+#       TODO ERRORS        #
 ############################
 
 # Absolute path to the directory of the program
 absolute_dirpath = os.path.abspath(os.path.dirname(__file__))
-fileName = 'slika.jpg'
+fileName = 'picture.jpg'
 
 class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self):
         
         super(CameraClass, self).__init__()
         self.setupUi(self)
+        
+        self.optionLabel.adjustSize()
+        # Not possible to resize the window
+        self.setFixedSize(942, 594)
+        self.statusBar.setSizeGripEnabled(False)
+
+        # Set action on radio buttons
+        self.videoFrame.setVisible(False)
+        self.computerCamera.toggled.connect(
+        				lambda: self.recording(self.computerCamera.isChecked()))
+        
+        # Start the program                
         self.pushButton.clicked.connect(lambda: self.start())
         
+    def recording(self, check):
+
+        # Check type of recording where you detect motion
+        if(check):
+            self.videoFrame.setVisible(False)
+
+        else:
+            self.videoFrame.setVisible(True)
 
     def start (self):
     
     	# Get informations from the gui
-        iemail = self.i_email.text()
-        ipassword = self.i_password.text()
+        iemail = str(self.i_email.text())
+        ipassword = str(self.i_password.text())
+        temail = str(self.receiveEmail.text())
+        
+        emailResult = self.checkEmail(iemail)
+        
+        if emailResult == False:
+            print("Bla")
+            return
         
         # Open a window with live video where 0 is camera port
-        # TODO IN VIDEOCAPTURE IF YOU WANT PLACE VIDEO THAT YOU HAVE
-        video = cv2.VideoCapture(0)
+        vid = 0 if self.computerCamera.isChecked() else self.videoName.text()
+        video = cv2.VideoCapture(vid)
         
         # Algorithm that detects changes/motions in the frame based on 300 previous frames
         fgbg = cv2.createBackgroundSubtractorMOG2(300, 200, True)
@@ -44,11 +72,11 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         a = 0
         
         first_frame = None
-        tmp = False
         moving = 0
 
+		# File where the time will be stored
         try:
-            times = open('times.txt', 'w')
+            times = open('times.txt', 'a')
         except:
             print('Error!')
 
@@ -70,9 +98,10 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                 print(a)
                 moving += 1
                 
-                if tmp == False and moving > 10:
-                    tmp = True
-
+                if moving > 10:
+                    
+                    moving -= 10
+					# Time when detection of the motion was made
                     seconds = time.time()
                     ltime = time.ctime(seconds)
                     times.write(ltime + "\n")
@@ -81,9 +110,9 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                     cv2.imwrite(os.path.join(absolute_dirpath, fileName), frame)
 
 					# Account you are sending mail from
-                    email = '@gmail.com'
-                    password = 'pass'
-                    send_to_email = iemail
+                    email = iemail
+                    password = ipassword
+                    send_to_email = temail
                     subject = 'Subject'
                     message = ltime
 
@@ -138,6 +167,12 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         
         # To destroy all the windows that are created
         cv2.destroyAllWindows()
+
+    def checkEmail(self, email):
+        if re.match(r"\b[\w.-]+@[\w.-]+(\.[\w.-]+)*\.[A-Za-z]{2,4}\b", email) is None:
+            return False
+        else:
+            return True
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
