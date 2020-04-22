@@ -148,8 +148,8 @@
     </property>
     <property name="geometry">
      <rect>
-      <x>210</x>
-      <y>100</y>
+      <x>160</x>
+      <y>90</y>
       <width>541</width>
       <height>91</height>
      </rect>
@@ -157,8 +157,8 @@
     <widget class="QWidget" name="horizontalLayoutWidget">
      <property name="geometry">
       <rect>
-       <x>10</x>
-       <y>11</y>
+       <x>20</x>
+       <y>10</y>
        <width>481</width>
        <height>101</height>
       </rect>
@@ -171,6 +171,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="statusTip">
+         <string>Enter relative path of the video.</string>
         </property>
         <property name="text">
          <string>Name of the video:</string>
@@ -209,6 +212,9 @@
           <italic>false</italic>
           <bold>false</bold>
          </font>
+        </property>
+        <property name="statusTip">
+         <string>Enter relative path of the video.</string>
         </property>
         <property name="placeholderText">
          <string>Enter the name of the video</string>
@@ -376,7 +382,7 @@
         </sizepolicy>
        </property>
        <property name="statusTip">
-        <string>You give the name of the video on your computer. It is important that is in the same directory as program.</string>
+        <string>You give the name of the video on your computer.</string>
        </property>
        <property name="text">
         <string>Video</string>
@@ -404,7 +410,7 @@
      <x>0</x>
      <y>0</y>
      <width>942</width>
-     <height>22</height>
+     <height>29</height>
     </rect>
    </property>
   </widget>

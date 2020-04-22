@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'gui.ui'
 #
-# Created by: PyQt5 UI code generator 5.10.1
+# Created by: PyQt5 UI code generator 5.9.2
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -68,10 +68,10 @@ class Ui_MainWindow(object):
         self.i_password.setObjectName("i_password")
         self.videoFrame = QtWidgets.QWidget(self.centralwidget)
         self.videoFrame.setEnabled(True)
-        self.videoFrame.setGeometry(QtCore.QRect(210, 100, 541, 91))
+        self.videoFrame.setGeometry(QtCore.QRect(160, 90, 541, 91))
         self.videoFrame.setObjectName("videoFrame")
         self.horizontalLayoutWidget = QtWidgets.QWidget(self.videoFrame)
-        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(10, 11, 481, 101))
+        self.horizontalLayoutWidget.setGeometry(QtCore.QRect(20, 10, 481, 101))
         self.horizontalLayoutWidget.setObjectName("horizontalLayoutWidget")
         self.showVideoBox = QtWidgets.QHBoxLayout(self.horizontalLayoutWidget)
         self.showVideoBox.setContentsMargins(0, 0, 0, 0)
@@ -187,7 +187,7 @@ class Ui_MainWindow(object):
         self.verticalLayoutWidget.raise_()
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
-        self.menubar.setGeometry(QtCore.QRect(0, 0, 942, 22))
+        self.menubar.setGeometry(QtCore.QRect(0, 0, 942, 29))
         self.menubar.setObjectName("menubar")
         MainWindow.setMenuBar(self.menubar)
         self.statusBar = QtWidgets.QStatusBar(MainWindow)
@@ -249,7 +249,9 @@ class Ui_MainWindow(object):
         self.i_email.setPlaceholderText(_translate("MainWindow", "Enter email"))
         self.i_password.setStatusTip(_translate("MainWindow", "Password to email account from which the notification is sent."))
         self.i_password.setPlaceholderText(_translate("MainWindow", "Enter password"))
+        self.label_2.setStatusTip(_translate("MainWindow", "Enter relative path of the video."))
         self.label_2.setText(_translate("MainWindow", "Name of the video:"))
+        self.videoName.setStatusTip(_translate("MainWindow", "Enter relative path of the video."))
         self.videoName.setPlaceholderText(_translate("MainWindow", "Enter the name of the video"))
         self.label_3.setText(_translate("MainWindow", "Account from which you send the notification:"))
         self.label_4.setText(_translate("MainWindow", "Account where the notification is received:"))
@@ -260,7 +262,7 @@ class Ui_MainWindow(object):
         self.optionLabel.setText(_translate("MainWindow", "Choose how you enter the recording:"))
         self.computerCamera.setStatusTip(_translate("MainWindow", "It will detect motion on the recording provided by your computer camera."))
         self.computerCamera.setText(_translate("MainWindow", "Computer camera"))
-        self.video.setStatusTip(_translate("MainWindow", "You give the name of the video on your computer. It is important that is in the same directory as program."))
+        self.video.setStatusTip(_translate("MainWindow", "You give the name of the video on your computer."))
         self.video.setText(_translate("MainWindow", "Video"))
 
 

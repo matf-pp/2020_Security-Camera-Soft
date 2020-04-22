@@ -1,5 +1,6 @@
 import gui
 from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5.QtWidgets import QMessageBox
 import sys
 import cv2
 import numpy as np
@@ -53,14 +54,27 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
     	# Get informations from the gui
         iemail = str(self.i_email.text())
         ipassword = str(self.i_password.text())
-        temail = str(self.receiveEmail.text())
         
+        # Report problem if the password is empty
+        if ipassword == "":
+            self.errorMessage("password")
+            return
+
+        # Call email function for check
         emailResult = self.checkEmail(iemail)
         
         if emailResult == False:
-            print("Bla")
+            self.errorMessage("sender")
             return
-        
+
+        # Call email function for check
+        temail = str(self.receiveEmail.text())
+        emailResult = self.checkEmail(temail)
+
+        if emailResult == False:
+            self.errorMessage("receiver")
+            return
+
         # Open a window with live video where 0 is camera port
         vid = 0 if self.computerCamera.isChecked() else self.videoName.text()
         video = cv2.VideoCapture(vid)
@@ -77,7 +91,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 		# File where the time will be stored
         try:
             times = open('times.txt', 'a')
-        except:
+        except IOError:
             print('Error!')
 
         while True:
@@ -142,7 +156,19 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                     server.starttls()
                     
                     # Log in to account that is sending mail
-                    server.login(email,password)
+                    try:
+                        server.login(email,password)
+                    except:
+
+                        # Error message
+                        self.errorMessage("authorization")
+
+                        # End everything
+                        video.release()
+                        times.close()
+                        cv2.destroyAllWindows()
+                        return
+
                     text = msg.as_string()
                     server.sendmail(email,send_to_email, text)
                     
@@ -168,11 +194,37 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         # To destroy all the windows that are created
         cv2.destroyAllWindows()
 
+    # Function that checks if the email is in the correct form
     def checkEmail(self, email):
         if re.match(r"\b[\w.-]+@[\w.-]+(\.[\w.-]+)*\.[A-Za-z]{2,4}\b", email) is None:
             return False
         else:
             return True
+    
+    # Show popup window with the notice about mistake
+    def errorMessage(self, problem):
+        msg = QMessageBox()
+
+        if problem == "sender":
+            msg.setWindowTitle("Email")
+            msg.setText("You entered the wrong form of the sender's email.")
+
+        elif problem == "receiver":
+            msg.setWindowTitle("Email")
+            msg.setText("You entered the wrong form of the receiver's email.")
+
+        elif problem == "authorization":
+            msg.setWindowTitle("Authorization")
+            msg.setText("Wrong email or password.")
+
+        elif problem == "password":
+            msg.setWindowTitle("Password")
+            msg.setText("You left empty password.")
+
+        msg.setIcon(QMessageBox.Critical)
+
+        # Show message
+        msg.exec_()
 
 if __name__ == "__main__":
     app = QtWidgets.QApplication(sys.argv)
