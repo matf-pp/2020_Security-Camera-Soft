@@ -20,7 +20,7 @@ class Ui_MainWindow(object):
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         font = QtGui.QFont()
         font.setFamily("KacstLetter")
-        font.setPointSize(15)
+        font.setPointSize(12)
         font.setBold(True)
         font.setItalic(True)
         font.setWeight(75)
