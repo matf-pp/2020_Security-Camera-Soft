@@ -10,7 +10,7 @@ If you check option "Video", you need to give the relative path of the video.
 You need to specify the email address and password from which the email will be sent, as well as the email address of the account to which the email will be sent. Email service of the sender must be gmail.
 
 Clicking on the start button will open two new windows. In one you will see the actual image of the recording and in the other it will show a black and white image. Black shows the background, respectively, objects that are static and white represents objects that move, and that movement will be detected.
-Press 'q' when you want to finish detection.
+Press <kbd>q</kbd> when you want to finish detection.
 
 If it detects any movement in a recording or live broadcast from your camera, it will record that image and send you an email notification along with the image it recorded and the time the image was taken.
 
