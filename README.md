@@ -1,5 +1,4 @@
 # Security Camera Soft.
-
 ## :scroll: Description:
 This is software that detects movements and sends a notification to the user by email. There are two options:
 1. To detect movements on the camera of your computer
@@ -9,12 +8,20 @@ If you check option "Video", you need to give the relative path of the video.
 
 You need to specify the email address and password from which the email will be sent, as well as the email address of the account to which the email will be sent. Email service of the sender must be gmail.
 
-Clicking on the start button will open two new windows. In one you will see the actual image of the recording and in the other it will show a black and white image. Black shows the background, respectively, objects that are static and white represents objects that move, and that movement will be detected.
+Clicking on the start button will open two new windows. In one you will see the actual image of the recording and in the other it will show a black and white image. Black shows the background, respectively, objects that are static and white represents objects that move, and that movement will be detected. <br>
 Press <kbd>q</kbd> when you want to finish detection.
+<
+If it detects any movement in a recording or live broadcast from your camera, it will record that image and send you an email notification along with the image it recorded and the time the image was taken. <br>
+Program sends only the first created image together with its creation time.<br>
+If more than 5 minutes have passed between the two saved images, the program will send a new notification.
+<br>
+All captured images will be saved in the "images" directory, the times the images were taken will be saved in the "times.txt" file.
+<br><br>
+The project was written in the programming language Python and uses the background subtraction algorithm MOG2.
+<br>
+The program is compatible with the LUbuntu and Ubuntu operating systems of any version on which the libraries listed below can be installed.
 
-If it detects any movement in a recording or live broadcast from your camera, it will record that image and send you an email notification along with the image it recorded and the time the image was taken.
-
-The project is written in the programming language Python and uses the background subtraction algorithm MOG2.
+![gui](https://github.com/matf-pp/2020_Security-Camera-Soft/blob/master/Screenshots/screen1.jpg)
 
 ## :wrench: Installation:
 
