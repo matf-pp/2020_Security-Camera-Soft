@@ -23,17 +23,23 @@ The program is compatible with the LUbuntu and Ubuntu operating systems of any v
 
 ![gui](https://github.com/matf-pp/2020_Security-Camera-Soft/blob/master/Screenshots/screen1.jpg)
 
-## :wrench: Installation:
+## :wrench: Installation - two options:
+* Program startup is possible by downloading the released version of the software, unpacking it 
+and then accessing the "program" directory. In directory find the executable file named "program" and run it. <br>
+In this case you won't need to download all the libraries, however, [you will still need to enable Gmail
+to allow less secure apps](####you-will-need-to-enable-Gmail-to-allow-less-secure-apps:).
+<br><br>
+* You can run it manually by downloading all of the requirements bellow and following further steps.<br>
 
 #### Requirements:
-In order to start the project you need to have installed different libraries and packages:
+In order to manually start the project you need to have installed different libraries and packages:
   * OpenCv library: <code> pip install opencv-python </code>
   * NumPy library: <code> pip3 install numpy </code>
   * Email package: <code> pip install email </code>
   * SMTPLib library: <code> pip install smtplib </code>
   * QT5 framework: [Installation guide](https://wiki.qt.io/Install_Qt_5_on_Ubuntu)
   
-Also you will need to enable Gmail to allow less secure apps:
+#### You will need to enable Gmail to allow less secure apps:
 1. While logged into your gmail account press on the circle in top right corner
 2. Click on "Manage google account"
 3. On the left choose "Security"
