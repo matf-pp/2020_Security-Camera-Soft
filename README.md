@@ -37,7 +37,7 @@ In order to manually start the project you need to have installed different libr
   * NumPy library: <code> pip3 install numpy </code>
   * Email package: <code> pip install email </code>
   * SMTPLib library: <code> pip install smtplib </code>
-  * QT5 framework: [Installation guide](https://wiki.qt.io/Install_Qt_5_on_Ubuntu)
+  * PyQt5 framework: [Installation guide](https://gist.github.com/ujjwal96/1dcd57542bdaf3c9d1b0dd526ccd44ff)
 
 #### You will need to enable Gmail to allow less secure apps:
 1. While logged into your gmail account press on the circle in top right corner
