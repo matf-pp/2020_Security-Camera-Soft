@@ -27,7 +27,7 @@ The program is compatible with the LUbuntu and Ubuntu operating systems of any v
 * Program startup is possible by downloading the released version of the software, unpacking it 
 and then accessing the "program" directory. In directory find the executable file named "program" and run it. <br>
 In this case you won't need to download all the libraries, however, you will still need to enable Gmail
-to allow less secure apps ([guide](####-You-will-need-to-enable-Gmail-to-allow-less-secure-apps:)).
+to allow less secure apps ([guide](#you-will-need-to-enable-gmail-to-allow-less-secure-apps)).
 <br><br>
 * You can run it manually by downloading all of the requirements bellow and following further steps.<br>
 
@@ -38,7 +38,7 @@ In order to manually start the project you need to have installed different libr
   * Email package: <code> pip install email </code>
   * SMTPLib library: <code> pip install smtplib </code>
   * QT5 framework: [Installation guide](https://wiki.qt.io/Install_Qt_5_on_Ubuntu)
-  
+
 #### You will need to enable Gmail to allow less secure apps:
 1. While logged into your gmail account press on the circle in top right corner
 2. Click on "Manage google account"
