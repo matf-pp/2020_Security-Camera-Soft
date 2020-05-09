@@ -81,6 +81,16 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         except IOError:
             print('Error while opening file times.txt!')
 
+        try:
+            times = open('times.txt','r+')
+        except IOError:
+            print('Error while opening file times.txt!')
+        
+        try:
+            times.truncate(0)
+        except:
+            print('times.txt truncate error')
+
         # Open a window with live video where 0 is camera port
         vid = 0 if self.computerCamera.isChecked() else self.videoName.text()
 
