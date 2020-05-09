@@ -77,15 +77,11 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
         # File where the time will be stored
         try:
-            times = open('times.txt', 'a')
-        except IOError:
-            print('Error while opening file times.txt!')
-
-        try:
-            times = open('times.txt','r+')
+            times = open('times.txt', 'a+')
         except IOError:
             print('Error while opening file times.txt!')
         
+        # Delete previous times
         try:
             times.truncate(0)
         except:
@@ -93,6 +89,12 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
         # Open a window with live video where 0 is camera port
         vid = 0 if self.computerCamera.isChecked() else self.videoName.text()
+
+        # If user didn't enter the path of the video
+        if self.video.isChecked() and self.videoName.text() == "":
+            times.close()
+            self.errorMessage("video")
+            return
 
         try:
             video = cv2.VideoCapture(vid)
@@ -112,7 +114,6 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 		# Frame count
         a = 0
         
-        first_frame = None
         moving = 0
         firstTime = True
         timeNow = time.time()
@@ -121,6 +122,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         # ID of an image that will be stored in a folder
         imageID = 0
         
+        # Delete images from the previous detection
         try:
             filelist = [ f for f in os.listdir(imagesPath) ]
             for f in filelist:
@@ -135,7 +137,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 			
 			# Capture frame-by-frame
             try:
-                check, frame = video.read()
+                _, frame = video.read()
             except:
                 print("video.read method error!")
                 self.exError(video,times)
@@ -192,6 +194,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                     timeNow = time.time() 
                     timeDelta = timeNow - timeLast
 
+                    # Send new notification if more than 5 minutes have passed between the two saved images
                     if timeDelta > 300 or firstTime:
                         firstTime = False
 
@@ -199,7 +202,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                         email = iemail
                         password = ipassword
                         send_to_email = temail
-                        subject = 'Subject'
+                        subject = 'Motion detected'
                         message = ltime
 
                         # Creates the container email message
@@ -223,6 +226,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                             self.exError(video,times)
                             return
 
+                        # Move to images directory
                         try:
                             os.chdir(imagesPath)
                         except:
@@ -241,13 +245,16 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                         part = MIMEBase('application', 'octet-stream')
                         part.set_payload((attachment).read())
                         encoders.encode_base64(part)
+
                         try:
                             part.add_header('Content-Disposition',"attachment; filename= %s" % fileName)
                         except:
                             print("Unable to attach image")
                             self.exError(video,times)
                             return
+
                         msg.attach(part)
+
                         try:
                             os.chdir(absolute_dirpath)
                         except:
@@ -263,6 +270,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                             print("Unable to set up connection to the gmail server")
                             self.exError(video,times)
                             return
+
                         # Log in to account that is sending mail
                         try:
                             server.login(email,password)
@@ -276,6 +284,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                             return
 
                         text = msg.as_string()
+                        
                         try:
                             server.sendmail(email,send_to_email, text)
                         except:
@@ -287,9 +296,13 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                         server.quit()
 
             # Functions to display an image in a window
-            cv2.imshow('capturef', frame)
-            cv2.imshow('capture', fgmask)
-				    
+            try:
+                cv2.imshow('capturef', frame)
+                cv2.imshow('capture', fgmask)
+            except:
+                self.exError(video, times)
+                return
+
             # Waits for a key stroke
             key = cv2.waitKey(1) & 0xff
             
@@ -325,11 +338,15 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
         elif problem == "authorization":
             msg.setWindowTitle("Authorization")
-            msg.setText("Wrong email or password.")
+            msg.setText("You entered the wrong email or password.")
 
         elif problem == "password":
             msg.setWindowTitle("Password")
             msg.setText("You left empty password.")
+        
+        elif problem == "video":
+            msg.setWindowTitle("Video")
+            msg.setText("You didn't enter the relative path of the video.")
 
         msg.setIcon(QMessageBox.Critical)
 
