@@ -1,4 +1,7 @@
 # Security Camera Soft.
+
+[![Codacy Badge](https://api.codacy.com/project/badge/Grade/f405c857b9864b0dafd18d1759c8406a)](https://app.codacy.com/gh/matf-pp/2020_Security-Camera-Soft?utm_source=github.com&utm_medium=referral&utm_content=matf-pp/2020_Security-Camera-Soft&utm_campaign=Badge_Grade_Dashboard)
+
 ## :scroll: Description:
 This is software that detects movements and sends a notification to the user by email. There are two options:
 1. To detect movements on the camera of your computer
