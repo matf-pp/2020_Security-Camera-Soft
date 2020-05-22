@@ -31,7 +31,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         self.computerCamera.toggled.connect(
         				lambda: self.recording(self.computerCamera.isChecked()))
         
-        # Start the program                
+        # Start the program
         self.pushButton.clicked.connect(lambda: self.start())
 
     def exError(self, video, times):
