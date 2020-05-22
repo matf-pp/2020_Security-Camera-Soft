@@ -331,19 +331,15 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         if problem == "sender":
             msg.setWindowTitle("Email")
             msg.setText("You entered the wrong form of the sender's email.")
-
         elif problem == "receiver":
             msg.setWindowTitle("Email")
             msg.setText("You entered the wrong form of the receiver's email.")
-
         elif problem == "authorization":
             msg.setWindowTitle("Authorization")
             msg.setText("You entered the wrong email or password.")
-
         elif problem == "password":
             msg.setWindowTitle("Password")
             msg.setText("You left empty password.")
-        
         elif problem == "video":
             msg.setWindowTitle("Video")
             msg.setText("You didn't enter the relative path of the video.")
