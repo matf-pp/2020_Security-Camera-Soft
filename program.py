@@ -18,7 +18,6 @@ absolute_dirpath = os.path.abspath(os.path.dirname(__file__))
 
 class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self):
-        
         super(CameraClass, self).__init__()
         self.setupUi(self)
         
@@ -191,7 +190,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                         return
                         
                     timeLast = timeNow
-                    timeNow = time.time() 
+                    timeNow = time.time()
                     timeDelta = timeNow - timeLast
 
                     # Send new notification if more than 5 minutes have passed between the two saved images
