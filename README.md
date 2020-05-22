@@ -58,9 +58,9 @@ In order to manually start the project you need to have installed different libr
 ## :e-mail: Authors
 The project was done by:
 *   Nikola Jovanovic, contact informations: <br>
-          <code> nikolajovanov998@gmail.com </code> <br>
-          <code> mi17078@alas.matf.bg.ac.rs </code>
+          <code> <nikolajovanov998@gmail.com> </code> <br>
+          <code> <mi17078@alas.matf.bg.ac.rs> </code>
 
 *   Milos Milakovic, contact informations: <br>
-          <code> milos.milakovic98@gmail.com </code> <br>
-          <code> mi17152@alas.matf.bg.ac.rs </code>
+          <code> <milos.milakovic98@gmail.com> </code> <br>
+          <code> <mi17152@alas.matf.bg.ac.rs> </code>
