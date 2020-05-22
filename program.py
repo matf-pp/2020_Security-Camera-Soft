@@ -1,5 +1,5 @@
 import gui
-from PyQt5 import QtCore, QtWidgets
+from PyQt5 import QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 import sys
 import cv2
@@ -16,11 +16,17 @@ import re
 # Absolute path to the directory of the program
 absolute_dirpath = os.path.abspath(os.path.dirname(__file__))
 
+# Function that checks if the email is in the correct form
+def checkEmail(self, email):
+        if re.match(r"\b[\w.-]+@[\w.-]+(\.[\w.-]+)*\.[A-Za-z]{2,4}\b", email) is None:
+            return False
+        else:
+            return True
+
 class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
     def __init__(self):
         super(CameraClass, self).__init__()
         self.setupUi(self)
-        
         self.optionLabel.adjustSize()
         # Not possible to resize the window
         self.setFixedSize(942, 594)
@@ -60,7 +66,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
             return
 
         # Call email function for check
-        emailResult = self.checkEmail(iemail)
+        emailResult = checkEmail(iemail)
         
         if emailResult == False:
             self.errorMessage("sender")
@@ -68,7 +74,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
         # Call email function for check
         temail = str(self.receiveEmail.text())
-        emailResult = self.checkEmail(temail)
+        emailResult = checkEmail(temail)
 
         if emailResult == False:
             self.errorMessage("receiver")
@@ -316,13 +322,6 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         # To destroy all the windows that are created
         cv2.destroyAllWindows()
 
-    # Function that checks if the email is in the correct form
-    def checkEmail(self, email):
-        if re.match(r"\b[\w.-]+@[\w.-]+(\.[\w.-]+)*\.[A-Za-z]{2,4}\b", email) is None:
-            return False
-        else:
-            return True
-    
     # Show popup window with the notice about mistake
     def errorMessage(self, problem):
         msg = QMessageBox()
