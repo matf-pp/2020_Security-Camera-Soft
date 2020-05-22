@@ -1,5 +1,5 @@
 import gui
-from PyQt5 import QtCore, QtGui, QtWidgets
+from PyQt5 import QtCore, QtWidgets
 from PyQt5.QtWidgets import QMessageBox
 import sys
 import cv2
