@@ -65,7 +65,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
         # Call email function for check
         emailResult = checkEmail(iemail)
-        
+
         if emailResult == False:
             self.errorMessage("sender")
             return
