@@ -27,8 +27,7 @@ The program is compatible with the LUbuntu and Ubuntu operating systems of any v
 ![gui](https://github.com/matf-pp/2020_Security-Camera-Soft/blob/master/Screenshots/screen1.jpg)
 
 ## :wrench: Installation - two options
-*   Program startup is possible by downloading the released version of the software, unpacking it and then accessing the "program" directory. In directory find the executable file named "program" and run it. In this case you won't need to download all the libraries, however, you will still need to enable Gmail
-to allow less secure apps ([guide](#you-will-need-to-enable-gmail-to-allow-less-secure-apps)).
+*   Program startup is possible by downloading the released version of the software, unpacking it and then accessing the "program" directory. In directory find the executable file named "program" and run it. In this case you won't need to download all the libraries, however, you will still need to enable Gmail to allow less secure apps ([guide](#you-will-need-to-enable-gmail-to-allow-less-secure-apps)).
 *   You can run it manually by downloading all of the requirements bellow and following further steps.<br>
 
 ### Requirements
