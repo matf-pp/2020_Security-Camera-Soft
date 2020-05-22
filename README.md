@@ -50,9 +50,9 @@ In order to manually start the project you need to have installed different libr
 5.  Turn ON "allow less secure apps".
 
 ### Downloading and executing
-*   <code>git clone https://github.com/matf-pp/2020_Security-Camera-Soft.git</code> <br>
-*   <code>cd 2020_Security-Camera-Soft</code> <br>
-*   <code>pyuic5 -x gui.ui -o gui.py</code> <br>
+*   <code>git clone https://github.com/matf-pp/2020_Security-Camera-Soft.git</code><br>
+*   <code>cd 2020_Security-Camera-Soft</code><br>
+*   <code>pyuic5 -x gui.ui -o gui.py</code><br>
 *   <code>python3 program.py</code>
 
 ## :e-mail: Authors
