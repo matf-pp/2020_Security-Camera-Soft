@@ -31,7 +31,7 @@ The program is compatible with the LUbuntu and Ubuntu operating systems of any v
 and then accessing the "program" directory. In directory find the executable file named "program" and run it. <br>
 In this case you won't need to download all the libraries, however, you will still need to enable Gmail
 to allow less secure apps ([guide](#you-will-need-to-enable-gmail-to-allow-less-secure-apps)).
-<br><br>
+<br>
 *   You can run it manually by downloading all of the requirements bellow and following further steps.<br>
 
 ### Requirements
