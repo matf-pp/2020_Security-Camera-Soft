@@ -44,9 +44,8 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         video.release()
         times.close()
         cv2.destroyAllWindows()
-        
-    def recording(self, check):
 
+    def recording(self, check):
         # Check type of recording where you detect motion
         if(check):
             self.videoFrame.setVisible(False)
@@ -55,11 +54,10 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
             self.videoFrame.setVisible(True)
 
     def start (self):
-    
     	# Get informations from the gui
         iemail = str(self.i_email.text())
         ipassword = str(self.i_password.text())
-        
+
         # Report problem if the password is empty
         if ipassword == "":
             self.errorMessage("password")
@@ -85,7 +83,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
             times = open('times.txt', 'a+')
         except IOError:
             print('Error while opening file times.txt!')
-        
+
         # Delete previous times
         try:
             times.truncate(0)
@@ -107,7 +105,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
             print("cv2.VideoCapture method error!")
             self.exError(video,times)
             return
-        
+
         # Algorithm that detects changes/motions in the frame based on 300 previous frames
         try:
             fgbg = cv2.createBackgroundSubtractorMOG2(300, 200, True)
@@ -118,15 +116,15 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
 		# Frame count
         a = 0
-        
+
         moving = 0
         firstTime = True
         timeNow = time.time()
         imagesPath = absolute_dirpath +'/images'
-        
+
         # ID of an image that will be stored in a folder
         imageID = 0
-        
+
         # Delete images from the previous detection
         try:
             filelist = [ f for f in os.listdir(imagesPath) ]
@@ -139,7 +137,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
         while True:
             a = a + 1
-			
+
 			# Capture frame-by-frame
             try:
                 _, frame = video.read()
@@ -169,14 +167,14 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
             if a > 1 and count > 3000:
                 #print(a)
                 moving += 1
-                
+
                 if moving > 10:
 
                     moving -= 10
 					# Time when detection of the motion was made
                     seconds = time.time()
                     ltime = time.ctime(seconds)
-                    
+
                     try:
                         times.write(ltime + "\n")
                     except:
@@ -186,7 +184,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
                     fileName = 'image' + str(imageID) + '.jpg'
                     imageID += 1
-                    
+
                     # Save an image
                     try:
                         cv2.imwrite(os.path.join(imagesPath, fileName), frame)
@@ -194,7 +192,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                         print("cv2.imwrite method error!")
                         self.exError(video,times)
                         return
-                        
+
                     timeLast = timeNow
                     timeNow = time.time()
                     timeDelta = timeNow - timeLast
@@ -246,7 +244,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                             print("Unable to open file")
                             self.exError(video,times)
                             return
-                        
+
                         part = MIMEBase('application', 'octet-stream')
                         part.set_payload((attachment).read())
                         encoders.encode_base64(part)
@@ -289,7 +287,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
                             return
 
                         text = msg.as_string()
-                        
+
                         try:
                             server.sendmail(email,send_to_email, text)
                         except:
@@ -310,7 +308,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
 
             # Waits for a key stroke
             key = cv2.waitKey(1) & 0xff
-            
+
             # Convert to unicode and check if it is 'q'
             if key == ord('q'):
                 break
@@ -318,7 +316,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         video.release()
 
         times.close()
-        
+
         # To destroy all the windows that are created
         cv2.destroyAllWindows()
 
