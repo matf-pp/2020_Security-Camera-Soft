@@ -36,7 +36,7 @@ class CameraClass(gui.Ui_MainWindow, QtWidgets.QMainWindow):
         self.videoFrame.setVisible(False)
         self.computerCamera.toggled.connect(
         				lambda: self.recording(self.computerCamera.isChecked()))
-        
+
         # Start the program
         self.pushButton.clicked.connect(lambda: self.start())
 
