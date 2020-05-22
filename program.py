@@ -17,7 +17,7 @@ import re
 absolute_dirpath = os.path.abspath(os.path.dirname(__file__))
 
 # Function that checks if the email is in the correct form
-def checkEmail(self, email):
+def checkEmail(email):
         if re.match(r"\b[\w.-]+@[\w.-]+(\.[\w.-]+)*\.[A-Za-z]{2,4}\b", email) is None:
             return False
         else:
