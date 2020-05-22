@@ -31,7 +31,6 @@ The program is compatible with the LUbuntu and Ubuntu operating systems of any v
 and then accessing the "program" directory. In directory find the executable file named "program" and run it. <br>
 In this case you won't need to download all the libraries, however, you will still need to enable Gmail
 to allow less secure apps ([guide](#you-will-need-to-enable-gmail-to-allow-less-secure-apps)).
-<br>
 *   You can run it manually by downloading all of the requirements bellow and following further steps.<br>
 
 ### Requirements
@@ -58,9 +57,9 @@ In order to manually start the project you need to have installed different libr
 ## :e-mail: Authors
 The project was done by:
 *   Nikola Jovanovic, contact informations: <br>
-          <code> <nikolajovanov998@gmail.com> </code> <br>
-          <code> <mi17078@alas.matf.bg.ac.rs> </code>
+          <code> <mailto:nikolajovanov998@gmail.com> </code> <br>
+          <code> <mailto:mi17078@alas.matf.bg.ac.rs> </code>
 
 *   Milos Milakovic, contact informations: <br>
-          <code> <milos.milakovic98@gmail.com> </code> <br>
-          <code> <mi17152@alas.matf.bg.ac.rs> </code>
+          <code> <mailto:milos.milakovic98@gmail.com> </code> <br>
+          <code> <mailto:mi17152@alas.matf.bg.ac.rs> </code>
