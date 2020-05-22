@@ -13,13 +13,13 @@ You need to specify the email address and password from which the email will be 
 
 Clicking on the start button will open two new windows. In one you will see the actual image of the recording and in the other it will show a black and white image. Black shows the background, respectively, objects that are static and white represents objects that move, and that movement will be detected. <br>
 Press <kbd>q</kbd> when you want to finish detection.
-<br><br>
+<br>
 If it detects any movement in a recording or live broadcast from your camera, it will record that image and send you an email notification along with the image it recorded and the time the image was taken. <br>
 Program sends only the first created image together with its creation time.<br>
 If more than 5 minutes have passed between the two saved images, the program will send a new notification.
 <br>
 All captured images will be saved in the "images" directory, the times the images were taken will be saved in the "times.txt" file.
-<br><br>
+<br>
 The project was written in the programming language Python and uses the background subtraction algorithm MOG2.
 <br>
 The program is compatible with the LUbuntu and Ubuntu operating systems of any version on which the libraries listed below can be installed.
